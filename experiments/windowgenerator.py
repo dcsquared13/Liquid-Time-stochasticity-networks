@@ -1,4 +1,10 @@
 import numpy as np
+import tensorflow as tf
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+mpl.rcParams['figure.figsize'] = (8, 6)
+mpl.rcParams['axes.grid'] = False
 
 class WindowGenerator():
   def __init__(self, input_width, label_width, shift,
