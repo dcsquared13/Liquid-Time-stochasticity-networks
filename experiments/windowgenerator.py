@@ -2,7 +2,7 @@ import numpy as np
 
 class WindowGenerator():
   def __init__(self, input_width, label_width, shift,
-               train_df=train_df, val_df=val_df, test_df=test_df,
+               train_df, val_df, test_df,
                label_columns=None):
     # Store the raw data.
     self.train_df = train_df
@@ -53,8 +53,6 @@ class WindowGenerator():
 
     return inputs, labels
 
-  WindowGenerator.split_window = split_window
-
   def plot(self, model=None, plot_col='Close', max_subplots=3):
     inputs, labels = self.example
     plt.figure(figsize=(12, 8))
@@ -87,8 +85,6 @@ class WindowGenerator():
 
     plt.xlabel('Date')
 
-  WindowGenerator.plot = plot
-
   def make_dataset(self, data):
     data = np.array(data, dtype=np.float32)
     ds = tf.keras.utils.timeseries_dataset_from_array(
@@ -102,8 +98,6 @@ class WindowGenerator():
     ds = ds.map(self.split_window)
 
     return ds
-
-  WindowGenerator.make_dataset = make_dataset
 
   @property
   def train(self):
@@ -127,8 +121,3 @@ class WindowGenerator():
       # And cache it for next time
       self._example = result
     return result
-
-  WindowGenerator.train = train
-  WindowGenerator.val = val
-  WindowGenerator.test = test
-  WindowGenerator.example = example
