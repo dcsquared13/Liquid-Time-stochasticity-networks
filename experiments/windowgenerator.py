@@ -66,7 +66,7 @@ class WindowGenerator():
     max_n = min(max_subplots, len(inputs))
     for n in range(max_n):
       plt.subplot(max_n, 1, n+1)
-      plt.ylabel(f'{plot_col} [normed]')
+      plt.ylabel(f'{plot_col}')
       plt.plot(self.input_indices, inputs[n, :, plot_col_index],
               label='Inputs', marker='.', zorder=-10)
 
